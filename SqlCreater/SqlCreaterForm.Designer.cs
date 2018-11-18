@@ -48,7 +48,7 @@
             this.lb_table = new System.Windows.Forms.Label();
             this.tb_table = new System.Windows.Forms.TextBox();
             this.btn_addColumn = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gb_columns = new System.Windows.Forms.GroupBox();
             this.btn_delColumn = new System.Windows.Forms.Button();
             this.gb_dbTypes.SuspendLayout();
             this.gb_lgTypes.SuspendLayout();
@@ -262,19 +262,20 @@
             this.btn_addColumn.TabIndex = 12;
             this.btn_addColumn.Text = "添加列";
             this.btn_addColumn.UseVisualStyleBackColor = true;
+            this.btn_addColumn.Click += new System.EventHandler(this.btn_addColumn_Click);
             // 
-            // groupBox1
+            // gb_columns
             // 
-            this.groupBox1.Location = new System.Drawing.Point(18, 229);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(940, 282);
-            this.groupBox1.TabIndex = 13;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.gb_columns.Location = new System.Drawing.Point(18, 229);
+            this.gb_columns.Name = "gb_columns";
+            this.gb_columns.Size = new System.Drawing.Size(940, 282);
+            this.gb_columns.TabIndex = 13;
+            this.gb_columns.TabStop = false;
+            this.gb_columns.Text = "Columns";
             // 
             // btn_delColumn
             // 
-            this.btn_delColumn.Location = new System.Drawing.Point(870, 173);
+            this.btn_delColumn.Location = new System.Drawing.Point(857, 171);
             this.btn_delColumn.Name = "btn_delColumn";
             this.btn_delColumn.Size = new System.Drawing.Size(88, 28);
             this.btn_delColumn.TabIndex = 14;
@@ -285,9 +286,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1027, 611);
+            this.ClientSize = new System.Drawing.Size(1027, 587);
             this.Controls.Add(this.btn_delColumn);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gb_columns);
             this.Controls.Add(this.btn_addColumn);
             this.Controls.Add(this.tb_table);
             this.Controls.Add(this.lb_table);
@@ -331,7 +332,7 @@
         private System.Windows.Forms.Label lb_table;
         private System.Windows.Forms.TextBox tb_table;
         private System.Windows.Forms.Button btn_addColumn;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gb_columns;
         private System.Windows.Forms.Button btn_delColumn;
     }
 }

@@ -16,11 +16,17 @@ namespace SqlCreater
         {
             InitializeComponent();
             this.cb_columnTypes.Items.AddRange(types.ToArray());
+            
         }
 
         private void tb_name_TextChanged(object sender, EventArgs e)
         {
+            lb_columnName.Visible = tb_name.Text.Length < 1;
+        }
 
+        private void cb_columnTypes_TextChanged(object sender, EventArgs e)
+        {
+            lb_columnType.Visible = cb_columnTypes.Text.Length < 1;
         }
     }
 }

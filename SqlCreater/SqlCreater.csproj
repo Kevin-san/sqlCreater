@@ -52,6 +52,7 @@
     <Compile Include="ColumnControl.Designer.cs">
       <DependentUpon>ColumnControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Validator.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="SqlCreaterForm.cs">
       <SubType>Form</SubType>

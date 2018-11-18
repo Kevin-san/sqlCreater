@@ -22,5 +22,13 @@ namespace SqlCreater
             }
             return value==null?defaultValue:value;
         }
+        public static void disableRadioButton(this System.Windows.Forms.GroupBox groupBox)
+        {
+            foreach (Control item in groupBox.Controls)
+            {
+                RadioButton radioButton = item as RadioButton;
+                radioButton.Enabled = false;
+            }
+        }
     }
 }
