@@ -48,8 +48,8 @@
             this.lb_table = new System.Windows.Forms.Label();
             this.tb_table = new System.Windows.Forms.TextBox();
             this.btn_addColumn = new System.Windows.Forms.Button();
-            this.gb_columns = new System.Windows.Forms.GroupBox();
             this.btn_delColumn = new System.Windows.Forms.Button();
+            this.listColumns = new System.Windows.Forms.ListBox();
             this.gb_dbTypes.SuspendLayout();
             this.gb_lgTypes.SuspendLayout();
             this.SuspendLayout();
@@ -256,7 +256,7 @@
             // 
             // btn_addColumn
             // 
-            this.btn_addColumn.Location = new System.Drawing.Point(728, 171);
+            this.btn_addColumn.Location = new System.Drawing.Point(754, 173);
             this.btn_addColumn.Name = "btn_addColumn";
             this.btn_addColumn.Size = new System.Drawing.Size(88, 28);
             this.btn_addColumn.TabIndex = 12;
@@ -264,31 +264,31 @@
             this.btn_addColumn.UseVisualStyleBackColor = true;
             this.btn_addColumn.Click += new System.EventHandler(this.btn_addColumn_Click);
             // 
-            // gb_columns
-            // 
-            this.gb_columns.Location = new System.Drawing.Point(18, 229);
-            this.gb_columns.Name = "gb_columns";
-            this.gb_columns.Size = new System.Drawing.Size(940, 282);
-            this.gb_columns.TabIndex = 13;
-            this.gb_columns.TabStop = false;
-            this.gb_columns.Text = "Columns";
-            // 
             // btn_delColumn
             // 
-            this.btn_delColumn.Location = new System.Drawing.Point(857, 171);
+            this.btn_delColumn.Location = new System.Drawing.Point(905, 173);
             this.btn_delColumn.Name = "btn_delColumn";
             this.btn_delColumn.Size = new System.Drawing.Size(88, 28);
             this.btn_delColumn.TabIndex = 14;
             this.btn_delColumn.Text = "删除列";
             this.btn_delColumn.UseVisualStyleBackColor = true;
             // 
+            // listColumns
+            // 
+            this.listColumns.FormattingEnabled = true;
+            this.listColumns.ItemHeight = 18;
+            this.listColumns.Location = new System.Drawing.Point(18, 225);
+            this.listColumns.Name = "listColumns";
+            this.listColumns.Size = new System.Drawing.Size(927, 292);
+            this.listColumns.TabIndex = 15;
+            // 
             // SqlCreaterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1027, 587);
+            this.Controls.Add(this.listColumns);
             this.Controls.Add(this.btn_delColumn);
-            this.Controls.Add(this.gb_columns);
             this.Controls.Add(this.btn_addColumn);
             this.Controls.Add(this.tb_table);
             this.Controls.Add(this.lb_table);
@@ -332,8 +332,8 @@
         private System.Windows.Forms.Label lb_table;
         private System.Windows.Forms.TextBox tb_table;
         private System.Windows.Forms.Button btn_addColumn;
-        private System.Windows.Forms.GroupBox gb_columns;
         private System.Windows.Forms.Button btn_delColumn;
+        private System.Windows.Forms.ListBox listColumns;
     }
 }
 

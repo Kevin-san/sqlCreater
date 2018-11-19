@@ -54,9 +54,9 @@ namespace SqlCreater
         {
             database = tb_database.Text;
             table = tb_table.Text;
-            if ("".Equals(database) || regex.IsMatch(database))
+            if (Validator.isUninvalidString(database)||Validator.isUninvalidString(table))
             {
-                MessageBox.Show("请输入有效的数据库名！");
+                MessageBox.Show("请输入有效的数据库名或表名！");
                 return;
             }
             this.gb_dbTypes.disableRadioButton();
@@ -64,9 +64,8 @@ namespace SqlCreater
             this.tb_database.Enabled = false;
             this.tb_table.Enabled = false;
             ColumnControl columnControl = new ColumnControl(Constant.keyColumns[dbType]);
-            columnControl.TabIndex = idIndex;
-            idIndex++;
-            gb_columns.Controls.Add(columnControl);
+            
+            listColumns.Controls.Add(columnControl);
         }
     }
 }
