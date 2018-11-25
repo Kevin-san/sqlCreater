@@ -61,10 +61,10 @@
             // 
             this.lb_columnName.AutoSize = true;
             this.lb_columnName.BackColor = System.Drawing.SystemColors.Window;
-            this.lb_columnName.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(140)));
-            this.lb_columnName.Location = new System.Drawing.Point(29, 13);
+            this.lb_columnName.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(140)));
+            this.lb_columnName.Location = new System.Drawing.Point(31, 16);
             this.lb_columnName.Name = "lb_columnName";
-            this.lb_columnName.Size = new System.Drawing.Size(130, 24);
+            this.lb_columnName.Size = new System.Drawing.Size(109, 20);
             this.lb_columnName.TabIndex = 2;
             this.lb_columnName.Text = "输入字段名";
             // 
@@ -72,10 +72,10 @@
             // 
             this.lb_columnType.AutoSize = true;
             this.lb_columnType.BackColor = System.Drawing.SystemColors.Window;
-            this.lb_columnType.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_columnType.Location = new System.Drawing.Point(176, 13);
+            this.lb_columnType.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_columnType.Location = new System.Drawing.Point(174, 16);
             this.lb_columnType.Name = "lb_columnType";
-            this.lb_columnType.Size = new System.Drawing.Size(154, 24);
+            this.lb_columnType.Size = new System.Drawing.Size(129, 20);
             this.lb_columnType.TabIndex = 3;
             this.lb_columnType.Text = "选择字段类型";
             // 
@@ -92,10 +92,10 @@
             // 
             this.lb_totalLength.AutoSize = true;
             this.lb_totalLength.BackColor = System.Drawing.SystemColors.Window;
-            this.lb_totalLength.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(140)));
-            this.lb_totalLength.Location = new System.Drawing.Point(363, 13);
+            this.lb_totalLength.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(140)));
+            this.lb_totalLength.Location = new System.Drawing.Point(365, 16);
             this.lb_totalLength.Name = "lb_totalLength";
-            this.lb_totalLength.Size = new System.Drawing.Size(130, 24);
+            this.lb_totalLength.Size = new System.Drawing.Size(109, 20);
             this.lb_totalLength.TabIndex = 5;
             this.lb_totalLength.Text = "输入总长度";
             // 
@@ -112,10 +112,10 @@
             // 
             this.lb_decimalLength.AutoSize = true;
             this.lb_decimalLength.BackColor = System.Drawing.SystemColors.Window;
-            this.lb_decimalLength.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(140)));
-            this.lb_decimalLength.Location = new System.Drawing.Point(535, 13);
+            this.lb_decimalLength.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(140)));
+            this.lb_decimalLength.Location = new System.Drawing.Point(537, 16);
             this.lb_decimalLength.Name = "lb_decimalLength";
-            this.lb_decimalLength.Size = new System.Drawing.Size(154, 24);
+            this.lb_decimalLength.Size = new System.Drawing.Size(129, 20);
             this.lb_decimalLength.TabIndex = 7;
             this.lb_decimalLength.Text = "输入小数长度";
             // 

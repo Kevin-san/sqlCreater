@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using SqlCreater.Utils;
+using SqlCreater.Validator;
 
 namespace SqlCreater
 {
@@ -16,8 +11,9 @@ namespace SqlCreater
         private string lngType = "ddl";
         private string database="";
         private string table = "";
-        private int idIndex = 0;
+
         private System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("^[0-9a-zA-Z_]+$");
+
         public SqlCreaterForm()
         {
             InitializeComponent();
@@ -33,7 +29,7 @@ namespace SqlCreater
             }
             else
             {
-                if (lngType.Equals(Constant.DDL))
+                if (lngType.Equals(SqlCreater.Constant.Constant.DDL))
                 {
 
                 }
@@ -54,7 +50,7 @@ namespace SqlCreater
         {
             database = tb_database.Text;
             table = tb_table.Text;
-            if (Validator.isUninvalidString(database)||Validator.isUninvalidString(table))
+            if (database.isUninvalidString()|| table.isUninvalidString())
             {
                 MessageBox.Show("请输入有效的数据库名或表名！");
                 return;
@@ -63,7 +59,7 @@ namespace SqlCreater
             this.gb_lgTypes.disableRadioButton();
             this.tb_database.Enabled = false;
             this.tb_table.Enabled = false;
-            ColumnControl columnControl = new ColumnControl(Constant.keyColumns[dbType]);
+            ColumnControl columnControl = new ColumnControl(SqlCreater.Constant.Constant.KEY_COLUMNS[dbType.ToUpper()]);
             
             listColumns.Controls.Add(columnControl);
         }

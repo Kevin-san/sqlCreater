@@ -1,18 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
-namespace SqlCreater
+
+namespace SqlCreater.Validator
 {
-    class Validator
+    public static class Validator
     {
         private static System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("^[0-9a-zA-Z_]+$");
-        public static Boolean isUninvalidString(string value)
+        public static Boolean isUninvalidString(this string value)
         {
             return value == null || value.Equals("") || !regex.IsMatch(value);
+        }
+        /// <summary>
+        /// contains (S) or not
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool containsSizeLength(this string value)
+        {
+            return value != null && value.IndexOf("(S)")>-1;
+        }
+        /// <summary>
+        /// contains (S,D) or not
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool containsSizeAndDecimalLength(this string value)
+        {
+            return value != null && value.IndexOf("(S,D)") > -1;
         }
         #region 匹配方法
         /// <summary>  
@@ -21,7 +37,7 @@ namespace SqlCreater
         /// <param name="inputStr">待验证的字符串</param>  
         /// <param name="patternStr">正则表达式字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsMatch(string inputStr, string patternStr)
+        public static bool IsMatch(this string inputStr, string patternStr)
         {
             return IsMatch(inputStr, patternStr, false, false);
         }
@@ -33,7 +49,7 @@ namespace SqlCreater
         /// <param name="patternStr">正则表达式字符串</param>  
         /// <param name="ifIgnoreCase">匹配时是否不区分大小写</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsMatchWithIfIgnoreCase(string inputStr, string patternStr, bool ifIgnoreCase)
+        public static bool IsMatchWithIfIgnoreCase(this string inputStr, string patternStr, bool ifIgnoreCase)
         {
             return IsMatch(inputStr, patternStr, ifIgnoreCase, false);
         }
@@ -45,7 +61,7 @@ namespace SqlCreater
         /// <param name="patternStr">正则表达式字符串</param>  
         /// <param name="ifValidateWhiteSpace">是否验证空白字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsMatch(string inputStr, string patternStr, bool ifValidateWhiteSpace)
+        public static bool IsMatch(this string inputStr, string patternStr, bool ifValidateWhiteSpace)
         {
             return IsMatch(inputStr, patternStr, false, ifValidateWhiteSpace);
         }
@@ -78,7 +94,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsNumber(string input)
+        public static bool IsNumber(this string input)
         {
             //string pattern = @"^-?\d+$|^(-?\d+)(\.\d+)?$";  
             //return IsMatch(input, pattern);  
@@ -94,7 +110,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsInteger(string input)
+        public static bool IsInteger(this string input)
         {
             //string pattern = @"^-?\d+$";  
             //return IsMatch(input, pattern);  
@@ -110,7 +126,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsIntegerNotNagtive(string input)
+        public static bool IsIntegerNotNagtive(this string input)
         {
             //string pattern = @"^\d+$";  
             //return IsMatch(input, pattern);  
@@ -126,7 +142,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsIntegerPositive(string input)
+        public static bool IsIntegerPositive(this string input)
         {
             //string pattern = @"^[0-9]*[1-9][0-9]*$";  
             //return IsMatch(input, pattern);  
@@ -142,7 +158,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsDecimal(string input)
+        public static bool IsDecimal(this string input)
         {
             string pattern = @"^([-+]?[1-9]\d*\.\d+|-?0\.\d*[1-9]\d*)$";
             return IsMatch(input, pattern);
@@ -153,7 +169,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsEnglishCharacter(string input)
+        public static bool IsEnglishCharacter(this string input)
         {
             string pattern = @"^[A-Za-z]+$";
             return IsMatch(input, pattern);
@@ -164,7 +180,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsIntegerAndEnglishCharacter(string input)
+        public static bool IsIntegerAndEnglishCharacter(this string input)
         {
             string pattern = @"^[0-9A-Za-z]+$";
             return IsMatch(input, pattern);
@@ -175,7 +191,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsChineseCharacter(string input)
+        public static bool IsChineseCharacter(this string input)
         {
             string pattern = @"^[\u4e00-\u9fa5]+$";
             return IsMatch(input, pattern);
@@ -189,7 +205,7 @@ namespace SqlCreater
         /// <param name="lengthBegin">长度范围起始值（含）</param>  
         /// <param name="lengthEnd">长度范围结束值（含）</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsIntegerLength(string input, int lengthBegin, int lengthEnd)
+        public static bool IsIntegerLength(this string input, int lengthBegin, int lengthEnd)
         {
             //string pattern = @"^\d{" + lengthBegin + "," + lengthEnd + "}$";  
             //return IsMatch(input, pattern);  
@@ -213,7 +229,7 @@ namespace SqlCreater
         /// <param name="withNumber">是否包含数字</param>  
         /// <param name="withChineseCharacter">是否包含汉字</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsStringInclude(string input, bool withEnglishCharacter, bool withNumber, bool withChineseCharacter)
+        public static bool IsStringInclude(this string input, bool withEnglishCharacter, bool withNumber, bool withChineseCharacter)
         {
             if (!withEnglishCharacter && !withNumber && !withChineseCharacter)
                 return false;//如果英文字母、数字和汉字都没有，则返回false  
@@ -237,7 +253,7 @@ namespace SqlCreater
         /// <param name="lengthBegin">长度范围起始值（含）</param>  
         /// <param name="lengthEnd">长度范围结束值（含）</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsStringLength(string input, int lengthBegin, int lengthEnd)
+        public static bool IsStringLength(this string input, int lengthBegin, int lengthEnd)
         {
             //string pattern = @"^.{" + lengthBegin + "," + lengthEnd + "}$";  
             //return IsMatch(input, pattern);  
@@ -255,7 +271,7 @@ namespace SqlCreater
         /// <param name="lengthBegin">长度范围起始值（含）</param>  
         /// <param name="lengthEnd">长度范围结束值（含）</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsStringLengthOnlyNumberAndEnglishCharacter(string input, int lengthBegin, int lengthEnd)
+        public static bool IsStringLengthOnlyNumberAndEnglishCharacter(this string input, int lengthBegin, int lengthEnd)
         {
             string pattern = @"^[0-9a-zA-z]{" + lengthBegin + "," + lengthEnd + "}$";
             return IsMatch(input, pattern);
@@ -272,7 +288,7 @@ namespace SqlCreater
         /// <param name="lengthBegin">长度范围起始值（含）</param>  
         /// <param name="lengthEnd">长度范围结束值（含）</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsStringLengthByInclude(string input, bool withEnglishCharacter, bool withNumber, bool withChineseCharacter, int lengthBegin, int lengthEnd)
+        public static bool IsStringLengthByInclude(this string input, bool withEnglishCharacter, bool withNumber, bool withChineseCharacter, int lengthBegin, int lengthEnd)
         {
             if (!withEnglishCharacter && !withNumber && !withChineseCharacter)
                 return false;//如果英文字母、数字和汉字都没有，则返回false  
@@ -296,7 +312,7 @@ namespace SqlCreater
         /// <param name="lengthBegin">长度范围起始值（含）</param>  
         /// <param name="lengthEnd">长度范围结束值（含）</param>  
         /// <returns></returns>  
-        public static bool IsStringByteLength(string input, int lengthBegin, int lengthEnd)
+        public static bool IsStringByteLength(this string input, int lengthBegin, int lengthEnd)
         {
             //int byteLength = Regex.Replace(input, @"[^\x00-\xff]", "ok").Length;  
             //if (byteLength >= lengthBegin && byteLength <= lengthEnd)  
@@ -316,7 +332,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsDateTime(string input)
+        public static bool IsDateTime(this string input)
         {
             DateTime dt;
             if (DateTime.TryParse(input, out dt))
@@ -331,7 +347,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsTelePhoneNumber(string input)
+        public static bool IsTelePhoneNumber(this string input)
         {
             string pattern = @"^(((0\d2|0\d{2})[- ]?)?\d{8}|((0\d3|0\d{3})[- ]?)?\d{7})(-\d{3})?$";
             return IsMatch(input, pattern);
@@ -343,7 +359,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsMobilePhoneNumber(string input)
+        public static bool IsMobilePhoneNumber(this string input)
         {
             string pattern = @"^((\+)?86|((\+)?86)?)0?1[3458]\d{9}$";
             return IsMatch(input, pattern);
@@ -356,7 +372,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsPhoneNumber(string input)
+        public static bool IsPhoneNumber(this string input)
         {
             string pattern = @"^((\+)?86|((\+)?86)?)0?1[3458]\d{9}$|^(((0\d2|0\d{2})[- ]?)?\d{8}|((0\d3|0\d{3})[- ]?)?\d{7})(-\d{3})?$";
             return IsMatch(input, pattern);
@@ -367,7 +383,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsZipCode(string input)
+        public static bool IsZipCode(this string input)
         {
             //string pattern = @"^\d{6}$";  
             //return IsMatch(input, pattern);  
@@ -386,7 +402,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsEmail(string input)
+        public static bool IsEmail(this string input)
         {
             ////邮箱名以数字或字母开头；邮箱名可由字母、数字、点号、减号、下划线组成；邮箱名（@前的字符）长度为3～18个字符；邮箱名不能以点号、减号或下划线结尾；不能出现连续两个或两个以上的点号、减号。  
             //string pattern = @"^[a-zA-Z0-9]((?<!(\.\.|--))[a-zA-Z0-9\._-]){1,16}[a-zA-Z0-9]@([0-9a-zA-Z][0-9a-zA-Z-]{0,62}\.)+([0-9a-zA-Z][0-9a-zA-Z-]{0,62})\.?|((25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(25[0-5]|2[0-4]\d|[01]?\d\d?)$";  
@@ -400,7 +416,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsURL(string input)
+        public static bool IsURL(this string input)
         {
             ////每级域名由字母、数字和减号构成（第一个字母不能是减号），不区分大小写，单个域长度不超过63，完整的域名全长不超过256个字符。在DNS系统中，全名是以一个点“.”来结束的，例如“www.nit.edu.cn.”。没有最后的那个点则表示一个相对地址。   
             ////没有例如"http://"的前缀，没有传参的匹配  
@@ -417,7 +433,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsIPv4(string input)
+        public static bool IsIPv4(this string input)
         {
             //string pattern = @"^(25[0-4]|2[0-4]\d]|[01]?\d{2}|[1-9])\.(25[0-5]|2[0-4]\d]|[01]?\d?\d)\.(25[0-5]|2[0-4]\d]|[01]?\d?\d)\.(25[0-4]|2[0-4]\d]|[01]?\d{2}|[1-9])$";  
             //return IsMatch(input, pattern);  
@@ -451,7 +467,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsIPv6(string input)
+        public static bool IsIPv6(this string input)
         {
             string pattern = @"^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$";
             return IsMatch(input, pattern);
@@ -473,7 +489,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsIDCard15(string input)
+        public static bool IsIDCard15(this string input)
         {
             //验证是否可以转换为15位整数  
             long l = 0;
@@ -504,7 +520,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsIDCard18(string input)
+        public static bool IsIDCard18(this string input)
         {
             //验证是否可以转换为正确的整数  
             long l = 0;
@@ -560,7 +576,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsIDCard(string input)
+        public static bool IsIDCard(this string input)
         {
             if (input.Length == 18)
                 return IsIDCard18(input);
@@ -575,7 +591,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsLongitude(string input)
+        public static bool IsLongitude(this string input)
         {
             ////范围为-180～180，小数位数必须是1到5位  
             //string pattern = @"^[-\+]?((1[0-7]\d{1}|0?\d{1,2})\.\d{1,5}|180\.0{1,5})$";  
@@ -592,7 +608,7 @@ namespace SqlCreater
         /// </summary>  
         /// <param name="input">待验证的字符串</param>  
         /// <returns>是否匹配</returns>  
-        public static bool IsLatitude(string input)
+        public static bool IsLatitude(this string input)
         {
             ////范围为-90～90，小数位数必须是1到5位  
             //string pattern = @"^[-\+]?([0-8]?\d{1}\.\d{1,5}|90\.0{1,5})$";  

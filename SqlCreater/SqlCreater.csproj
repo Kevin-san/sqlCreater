@@ -22,6 +22,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -52,6 +54,10 @@
     <Compile Include="ColumnControl.Designer.cs">
       <DependentUpon>ColumnControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Constant\PropertiesLoader.cs" />
+    <Compile Include="Constant\Types.cs" />
+    <Compile Include="Utils\FileUtils.cs" />
+    <Compile Include="Validator\Class1.cs" />
     <Compile Include="Validator\Validator.cs" />
     <Compile Include="Constant\Constant.cs" />
     <Compile Include="SqlCreaterForm.cs">
@@ -78,6 +84,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Config\all_columns_options.properties" />
+    <None Include="Config\all_types.properties" />
     <None Include="Config\common_sql.properties" />
     <None Include="Config\mysql_ddl.properties" />
     <None Include="Config\mysql_dml.properties" />
@@ -96,4 +104,8 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>mkdir "$(TargetDir)\Config"
+copy "$(SolutionDir)\SqlCreater\Config\*.properties" "$(TargetDir)\Config\*.properties"</PreBuildEvent>
+  </PropertyGroup>
 </Project>
